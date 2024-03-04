@@ -18,9 +18,10 @@ export var game = function(){
         }
     };
 
+    var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
     var lastCard;
-    var pairs = 2;
-    var points = 100;
+    var pairs = options.pairs;
+    var points = 100; 
 
     return {
         init: function (call){
@@ -38,7 +39,6 @@ export var game = function(){
                     cards[i].callback();
                 }, 1000);
             }
-            console.log(cards.length);
             return cards;
         },
         click: function (card){
