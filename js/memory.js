@@ -29,7 +29,17 @@ export var game = function(){
             items = items.slice(0, pairs); // Agafem els primers
             items = items.concat(items);
             items.sort(() => Math.random() - 0.5); // Aleatòria
-            return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
+            var cards = items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
+            for(let i = 0; i < cards.length; i++){
+                cards[i].current = cards[i].front; // Mostra les cartes
+                setTimeout(() => { // Després 1 seg la oculta
+                    cards[i].current = back;
+                    cards[i].clickable = true;
+                    cards[i].callback();
+                }, 1000);
+            }
+            console.log(cards.length);
+            return cards;
         },
         click: function (card){
             if (!card.clickable) return;
