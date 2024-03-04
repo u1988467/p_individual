@@ -9,7 +9,7 @@ export var game = function(){
                 this.current = back;
                 this.clickable = true;
                 this.callback();
-            }, 1000);
+            }, time);
         },
         goFront: function (){
             this.current = this.front;
@@ -21,7 +21,21 @@ export var game = function(){
     var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
     var lastCard;
     var pairs = options.pairs;
+    var time = timedifficulty(options);
+    var pointsrested = pointsdifficulty(options);
     var points = 100; 
+
+    function timedifficulty(options){
+        if(options.difficulty === "easy") return 2000;
+        else if(options.difficulty === "normal") return 1000;
+        else if(options.difficulty === "hard") return 500;
+    }
+
+    function pointsdifficulty(options){
+        if(options.difficulty === "easy") return 10;
+        else if(options.difficulty === "normal") return 25;
+        else if(options.difficulty === "hard") return 50;
+    }
 
     return {
         init: function (call){
@@ -37,7 +51,7 @@ export var game = function(){
                     cards[i].current = back;
                     cards[i].clickable = true;
                     cards[i].callback();
-                }, 1000);
+                }, time);
             }
             return cards;
         },
@@ -54,7 +68,7 @@ export var game = function(){
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    points-=25;
+                    points-=pointsrested;
                     if (points <= 0){
                         alert ("Has perdut");
                         window.location.replace("../");
