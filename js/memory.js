@@ -44,7 +44,12 @@ export var game = function(){
             items = items.slice(0, pairs); // Agafem els primers
             items = items.concat(items);
             items.sort(() => Math.random() - 0.5); // Aleatòria
-            var cards = items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
+            var cards = items.map(item => {
+                var newCard = Object.create(card, {front: {value:item}, callback: {value:call}});
+                newCard.element = document.createElement('div');
+                newCard.element.classList.add('card'); // Agregar la clase .card
+                return newCard;
+            });
             for(let i = 0; i < cards.length; i++){
                 cards[i].current = cards[i].front; // Mostra les cartes
                 setTimeout(() => { // Després 1 seg la oculta

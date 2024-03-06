@@ -3,19 +3,23 @@
 	<head>
         <script src="../library/jquery.min.js"></script>
         <script src="../js/options.js" type="module"></script>
+        <link rel="stylesheet" 
+			href="../styles/options.css">
 		<title> Memory - Opcions </title>
 	</head>
 	<body>
 		<h1>Opcions</h1>
-        <label for="pairs">Número de cartes</label>
-        <input type="number" id="pairs" value="2" min="2" max="6">
-        <label for="dif">Dificultat</label>
+        <p><label for="pairs">Número de cartes: </label>
+        <input type="number" id="pairs" value="2" min="2" max="6"></p>
+        <p><label for="dif">Dificultat: </label>
         <select id="dif">
             <option value="easy">Baixa</option>
             <option value="normal" selected>Normal</option>
             <option value="hard">Alta</option>
-        </select>
-        <button id="default">Per defecte</button>
-        <button id="apply">Aplicar</button>
+        </select></p>
+        <div class="buttons"> 
+            <button id="default">Per defecte</button>
+            <button id="apply">Aplicar</button>
+        </div>
 	</body>
 </html>
